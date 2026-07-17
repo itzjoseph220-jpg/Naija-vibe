@@ -24,6 +24,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naija-vibe - Connect with Naija</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0866ff">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',Segoe UI, Helvetica, Arial, sans-serif}
@@ -34,10 +36,28 @@ body{background:#f0f2f5;color:#050505}
 .fb-search input{border:none;background:transparent;outline:none;width:100%;font-size:14px}
 .fb-icons{display:flex;gap:8px}
 .fb-icon{width:40px;height:40px;background:#e4e6eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
-.main{max-width:680px;margin:0 auto;padding:8px 0 70px}
+.main{max-width:680px;margin:0 auto;padding:0 0 70px}
+/* INSTALL BANNER */
+.install-banner{display:none;background:#0866ff;color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:56px;z-index:90}
+.install-banner.show{display:flex;animation:slideDown .3s}
+.install-banner b{font-size:14px}
+.install-btn{background:#fff;color:#0866ff;border:none;padding:8px 16px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+/* COVER */
+.cover-wrap{position:relative;background:#ddd;height:180px;overflow:hidden}
+.cover-wrap img{width:100%;height:100%;object-fit:cover}
+.cover-edit{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;border:none;padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.profile-row{display:flex;align-items:flex-end;gap:12px;padding:0 16px;margin-top:-30px;position:relative;z-index:2}
+.profile-avatar{width:90px;height:90px;border-radius:50%;border:4px solid #fff;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;overflow:hidden}
+.profile-avatar img{width:100%;height:100%;object-fit:cover}
+.profile-info{padding-bottom:8px}
+.profile-info h2{font-size:20px;font-weight:700}
+.profile-info p{font-size:13px;color:#65676b}
+
 .card{background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.1);margin:8px 8px;padding:12px}
 .create-top{display:flex;gap:10px;align-items:center;border-bottom:1px solid #e4e6eb;padding-bottom:12px;margin-bottom:8px}
-.avatar{width:40px;height:40px;border-radius:50%;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.avatar{width:40px;height:40px;border-radius:50%;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
 .create-input{flex:1;background:#f0f2f5;border-radius:20px;padding:10px 14px;border:none;outline:none;font-size:16px;cursor:pointer}
 .create-actions{display:flex;justify-content:space-around;padding-top:4px}
 .action{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:#65676b}
@@ -80,10 +100,31 @@ input[type=file]{display:none}
 <div class="fb-icons"><div class="fb-icon">➕</div><div class="fb-icon">💬</div><div class="fb-icon">🔔</div></div>
 </header>
 
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+<div><b>📲 Download Naija-vibe App</b><div style="font-size:12px;opacity:.9">Install like Facebook, use without browser!</div></div>
+<button class="install-btn" id="installBtn">Install</button>
+</div>
+
 <div class="main">
+<!-- COVER + PROFILE -->
+<div style="background:#fff;padding-bottom:12px;border-radius:0 0 8px 8px;box-shadow:0 1px 2px rgba(0,0,0,.1);margin-bottom:8px">
+<div class="cover-wrap" id="coverWrap">
+<img id="coverImg" style="display:none">
+<div style="width:100%;height:100%;background:linear-gradient(135deg,#0866ff,#00c6ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px" id="coverPlaceholder">Naija-vibe Cover</div>
+<button class="cover-edit" onclick="document.getElementById('coverInput').click()">📷 Change Cover</button>
+<input type="file" id="coverInput" accept="image/*">
+</div>
+<div class="profile-row">
+<div class="profile-avatar" id="profileAvatar" onclick="document.getElementById('avatarInput').click()">J</div>
+<div class="profile-info"><h2>itzjoseph220</h2><p>Welcome to Naija-vibe! 🇳🇬</p></div>
+</div>
+<input type="file" id="avatarInput" accept="image/*">
+</div>
+
 <div class="card">
 <div class="create-top">
-<div class="avatar">J</div>
+<div class="avatar" id="createAvatar">J</div>
 <div class="create-input" onclick="openComposer()">What's on your mind, Joseph?</div>
 </div>
 <div class="create-actions">
@@ -100,7 +141,7 @@ input[type=file]{display:none}
 <div class="composer-box">
 <div class="composer-header"><h3>Create post</h3><div class="close-btn" onclick="closeComposer()">✕</div></div>
 <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
-<div class="avatar">J</div><div><div style="font-weight:600">itzjoseph220</div><div style="font-size:12px;color:#65676b;background:#e4e6eb;padding:2px 6px;border-radius:4px;display:inline-block">🌎 Public</div></div>
+<div class="avatar" id="composerAvatar">J</div><div><div style="font-weight:600">itzjoseph220</div><div style="font-size:12px;color:#65676b;background:#e4e6eb;padding:2px 6px;border-radius:4px;display:inline-block">🌎 Public</div></div>
 </div>
 <textarea id="postText" class="textarea" placeholder="What's on your mind? Share the vibe..."></textarea>
 <div class="preview-wrap" id="previewWrap">
@@ -127,6 +168,45 @@ const postText = document.getElementById('postText');
 const postBtn = document.getElementById('postBtn');
 
 postText.addEventListener('input',()=>{postBtn.disabled = !postText.value.trim() && !selectedImage;});
+
+// COVER & AVATAR LOGIC
+const coverImg = document.getElementById('coverImg');
+const coverPlaceholder = document.getElementById('coverPlaceholder');
+const profileAvatar = document.getElementById('profileAvatar');
+const createAvatar = document.getElementById('createAvatar');
+const composerAvatar = document.getElementById('composerAvatar');
+
+function loadCoverAvatar(){
+ const savedCover = localStorage.getItem('naija_cover');
+ if(savedCover){coverImg.src=savedCover;coverImg.style.display='block';coverPlaceholder.style.display='none';}
+ const savedAvatar = localStorage.getItem('naija_avatar');
+ if(savedAvatar){
+  profileAvatar.innerHTML=`<img src="${savedAvatar}">`;
+  createAvatar.innerHTML=`<img src="${savedAvatar}">`;
+  composerAvatar.innerHTML=`<img src="${savedAvatar}">`;
+ }
+}
+loadCoverAvatar();
+
+document.getElementById('coverInput').addEventListener('change',function(){
+ if(this.files && this.files[0]){
+  const r=new FileReader();
+  r.onload=e=>{localStorage.setItem('naija_cover',e.target.result);coverImg.src=e.target.result;coverImg.style.display='block';coverPlaceholder.style.display='none';};
+  r.readAsDataURL(this.files[0]);
+ }
+});
+document.getElementById('avatarInput').addEventListener('change',function(){
+ if(this.files && this.files[0]){
+  const r=new FileReader();
+  r.onload=e=>{
+   localStorage.setItem('naija_avatar',e.target.result);
+   profileAvatar.innerHTML=`<img src="${e.target.result}">`;
+   createAvatar.innerHTML=`<img src="${e.target.result}">`;
+   composerAvatar.innerHTML=`<img src="${e.target.result}">`;
+  };
+  r.readAsDataURL(this.files[0]);
+ }
+});
 
 function save(){localStorage.setItem('naija_posts_v2',JSON.stringify(posts))}
 function openComposer(){document.getElementById('composer').classList.add('active');postText.focus()}
@@ -178,6 +258,35 @@ function toggleComment(i){const box=document.getElementById(`cbox-${i}`);box.sty
 function addComment(i){const inp=document.getElementById(`cinput-${i}`);const val=inp.value.trim();if(!val)return;posts[i].comments.push(val);save();render();setTimeout(()=>{document.getElementById(`cbox-${i}`).style.display='block'},100)}
 function sharePost(i){if(navigator.share){navigator.share({title:'Naija-vibe',text:posts[i].text,url:location.href})}else{navigator.clipboard.writeText(location.href);alert('Link copied! Share am for WhatsApp!')}}
 render();
+
+// PWA INSTALL LOGIC
+let deferredPrompt;
+const installBanner = document.getElementById('installBanner');
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt',(e)=>{
+ e.preventDefault();
+ deferredPrompt=e;
+ installBanner.classList.add('show');
+});
+
+installBtn.addEventListener('click',async()=>{
+ if(deferredPrompt){
+  deferredPrompt.prompt();
+  const {outcome}=await deferredPrompt.userChoice;
+  if(outcome==='accepted'){installBanner.style.display='none';}
+  deferredPrompt=null;
+ }else{
+  alert('To install: Tap your browser menu (3 dots) -> Add to Home Screen -> Install!');
+ }
+});
+
+window.addEventListener('appinstalled',()=>{installBanner.style.display='none';});
+
+// Service worker
+if('serviceWorker' in navigator){
+ navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
 </script>
 </body>
 </html>
