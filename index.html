@@ -1,78 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><!-- PLAYABLE_TOUCH_PATCH_V1 --><script>
+(function() {
+  if (window.__playableTouchPatchInstalled) return;
+  window.__playableTouchPatchInstalled = true;
+  var origAdd = EventTarget.prototype.addEventListener;
+  var blockedTypes = { touchstart: 1, touchmove: 1, wheel: 1 };
+  EventTarget.prototype.addEventListener = function(type, listener, options) {
+    if (blockedTypes[type]) {
+      if (options === undefined || options === null) {
+        options = { passive: true };
+      } else if (typeof options === 'boolean') {
+        options = { capture: options, passive: true };
+      } else {
+        options = Object.assign({}, options, { passive: true });
+      }
+    }
+    return origAdd.call(this, type, listener, options);
+  };
+})();
+</script><script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Naija-vibe</title>
+<link rel="manifest" href="manifest.json">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:sans-serif;background:#f0f2f5}
-.fb-header{background:#fff;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 2px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;gap:10px}
+.fb-header{background:#fff;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 2px rgba(0,0,0,.1);position:sticky;top:0;z-index:100}
 .fb-logo{font-weight:800;color:#0866ff;font-size:22px}
-.fb-search{background:#f0f2f5;padding:8px 12px;border-radius:20px;display:flex;align-items:center;flex:1;max-width:300px}
+.fb-search{background:#f0f2f5;padding:8px 12px;border-radius:20px;display:flex;align-items:center;flex:1;max-width:300px;margin:0 8px}
 .fb-search input{border:none;background:transparent;outline:none;width:100%}
 .fb-icons{display:flex;gap:8px}
-.fb-icon{width:36px;height:36px;background:#e4e6eb;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.fb-icon{width:36px;height:36px;background:#e4e6eb;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .pages-btn{background:#0866ff;color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:700}
 .install-banner{background:#0866ff;color:#fff;padding:10px;display:flex;justify-content:space-between;align-items:center}
-.install-btn{background:#fff;color:#0866ff;border:none;padding:6px 12px;border-radius:6px;font-weight:700}
+.install-btn{background:#fff;color:#0866ff;border:none;padding:6px 12px;border-radius:6px;font-weight:700;cursor:pointer}
 .main{max-width:680px;margin:0 auto;padding:10px}
 .cover-wrap{position:relative}
 #coverImg{width:100%;height:200px;object-fit:cover;border-radius:8px 8px 0 0;background:#ddd}
 .profile-row{display:flex;align-items:flex-end;gap:12px;padding:0 16px;margin-top:-30px;position:relative}
-.profile-avatar{width:90px;height:90px;border-radius:50%;border:4px solid #fff;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden}
+.profile-avatar{width:90px;height:90px;border-radius:50%;border:4px solid #fff;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:700}
 .profile-info h2{font-size:20px;font-weight:700}
 .profile-info p{font-size:13px;color:#65676b}
 .card{background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.1);margin:8px 0;padding:12px}
 .create{display:flex;gap:10px;align-items:center;border-bottom:1px solid #e4e6eb;padding-bottom:10px}
 .avatar{width:40px;height:40px;border-radius:50%;background:#0866ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.create-input{flex:1;background:#f0f2f5;border-radius:20px;padding:10px 14px;border:none;outline:none}
+.create-input{flex:1;background:#f0f2f5;border-radius:20px;padding:10px 14px;border:none;outline:none;cursor:pointer}
 .create-actions{display:flex;justify-content:space-around;padding-top:10px}
-.action{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:6px}
+.action{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:6px;cursor:pointer}
+.action:hover{background:#f2f2f2}
+.menu-btn{border:none;background:none;font-size:24px;margin-right:8px;cursor:pointer}
+#sideMenu{display:none;position:fixed;top:0;left:0;width:280px;height:100%;background:#fff;z-index:9999;box-shadow:2px 0 15px rgba(0,0,0,0.3);padding:0;overflow-y:auto}
+.menu-header{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #e4e6eb}
+.menu-link{display:block;padding:14px 16px;margin:8px;border-radius:8px;text-decoration:none;color:#000;font-weight:500}
+.menu-link:hover{background:#f0f2f5}
 </style>
 </head>
 <body>
 
-<button onclick="toggleMenu()" style="border:none;background:none;font-size:22px;margin-right:6px">☰</button><header class="fb-header">
+<header class="fb-header">
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 <div class="fb-logo">naija-vibe</div>
 <div class="fb-search"><span style="margin-right:6px">🔍</span><input placeholder="Search Naija-vibe"></div>
 <a href="pages.html" class="pages-btn">Pages</a>
 <div class="fb-icons"><div class="fb-icon">➕</div><div class="fb-icon">💬</div><div class="fb-icon">🔔</div></div>
 </header>
 
-<div id="sideMenu" style="display:none;position:fixed;top:0;left:0;width:250px;height:100%;background:#fff;z-index:9999;box-shadow:2px 0 10px rgba(0,0,0,0.3);padding:20px">
-<div style="display:flex;justify-content:space-between"><b>Menu</b><button onclick="toggleMenu()" style="border:none;background:none;font-size:20px">✕</button></div>
-<a href="index.html" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">🏠 Home</a>
-<a href="pages.html" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">📄 Pages</a>
-<a href="#" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">⚙️ Settings</a>
+<div id="sideMenu">
+<div class="menu-header"><b style="font-size:18px">naija-vibe Menu</b><button onclick="toggleMenu()" style="border:none;background:#e4e6eb;width:32px;height:32px;border-radius:50%;font-size:18px">✕</button></div>
+<a href="index.html" class="menu-link">🏠 Home</a>
+<a href="pages.html" class="menu-link">📄 Pages - Manage Pages</a>
+<a href="#" class="menu-link">👥 Groups</a>
+<a href="#" class="menu-link">🎥 Videos / Reels</a>
+<a href="#" class="menu-link">👤 Friends</a>
+<a href="#" class="menu-link">💾 Saved</a>
+<a href="#" class="menu-link">⚙️ Settings & Privacy</a>
+<div style="padding:16px;color:#65676b;font-size:12px">© 2026 Naija-vibe by Joseph</div>
 </div>
-<script>function toggleMenu(){let m=document.getElementById('sideMenu');m.style.display=m.style.display==='none'?'block':'none';}</script><!-- INSTALL BANNER -->
+
 <div class="install-banner" id="installBanner">
-<div><b>📱 Download Naija-vibe App</b><div style="font-size:12px;opacity:.9">Install like Facebook, use offline!</div></div>
+<div><b>📲 Download Naija-vibe App</b><div style="font-size:12px;opacity:.9">Install like Facebook, use offline!</div></div>
 <button class="install-btn" id="installBtn">Install</button>
 </div>
 
 <div class="main">
-<!-- COVER + PROFILE -->
 <div style="background:#fff;padding-bottom:12px;border-radius:0 0 8px 8px;box-shadow:0 1px 2px rgba(0,0,0,.1)">
 <div class="cover-wrap">
-<img id="coverImg" src=https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=680&h=200&fit=crop" style="display:block;width:100%">
-<div style="display:none"><input type="file" id="coverInput" accept="image/*"></div>
+<img id="coverImg" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=680&h=200&fit=crop" style="display:block">
 </div>
 <div class="profile-row">
 <div class="profile-avatar" id="profileAvatar">J</div>
 <div class="profile-info"><h2>itzjoseph220</h2><p>Welcome to Naija-vibe! 🇳🇬</p></div>
 </div>
-<input type="file" id="avatarInput" accept="image/*" style="display:none">
 </div>
 
 <div class="card">
 <div class="create">
-<div class="avatar" id="createAvatar">J</div>
+<div class="avatar">J</div>
 <div class="create-input" onclick="openComposer()">What's on your mind, Joseph?</div>
 </div>
 <div class="create-actions">
-<div class="action" onclick="openComposer()"><span>📷</span> Photo</div>
+<div class="action" onclick="openComposer()"><span>🖼️</span> Photo</div>
 <div class="action"><span>😊</span> Feeling</div>
 <div class="action"><span>📍</span> Location</div>
 </div>
@@ -82,8 +111,14 @@ body{font-family:sans-serif;background:#f0f2f5}
 </div>
 
 <script>
-// Simple demo
-function openComposer(){alert('Composer - Add post feature coming!')}
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;});
+function toggleMenu(){let m=document.getElementById('sideMenu');m.style.display=m.style.display==='none'||m.style.display===''?'block':'none';}
+document.getElementById('installBtn').addEventListener('click',async()=>{
+ if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('installBanner').style.display='none';}
+ else{alert('To install: Tap Chrome menu (3 dots top right) > Add to Home screen > Install');}
+});
+function openComposer(){alert('Post feature coming soon!');}
 </script>
 </body>
 </html>
