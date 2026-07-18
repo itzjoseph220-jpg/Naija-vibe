@@ -33,14 +33,20 @@ body{font-family:sans-serif;background:#f0f2f5}
 </head>
 <body>
 
-<header class="fb-header">
+<button onclick="toggleMenu()" style="border:none;background:none;font-size:22px;margin-right:6px">☰</button><header class="fb-header">
 <div class="fb-logo">naija-vibe</div>
 <div class="fb-search"><span style="margin-right:6px">🔍</span><input placeholder="Search Naija-vibe"></div>
 <a href="pages.html" class="pages-btn">Pages</a>
 <div class="fb-icons"><div class="fb-icon">➕</div><div class="fb-icon">💬</div><div class="fb-icon">🔔</div></div>
 </header>
 
-<!-- INSTALL BANNER -->
+<div id="sideMenu" style="display:none;position:fixed;top:0;left:0;width:250px;height:100%;background:#fff;z-index:9999;box-shadow:2px 0 10px rgba(0,0,0,0.3);padding:20px">
+<div style="display:flex;justify-content:space-between"><b>Menu</b><button onclick="toggleMenu()" style="border:none;background:none;font-size:20px">✕</button></div>
+<a href="index.html" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">🏠 Home</a>
+<a href="pages.html" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">📄 Pages</a>
+<a href="#" style="display:block;padding:12px;background:#f0f2f5;border-radius:8px;margin:10px 0;text-decoration:none;color:#000">⚙️ Settings</a>
+</div>
+<script>function toggleMenu(){let m=document.getElementById('sideMenu');m.style.display=m.style.display==='none'?'block':'none';}</script><!-- INSTALL BANNER -->
 <div class="install-banner" id="installBanner">
 <div><b>📱 Download Naija-vibe App</b><div style="font-size:12px;opacity:.9">Install like Facebook, use offline!</div></div>
 <button class="install-btn" id="installBtn">Install</button>
