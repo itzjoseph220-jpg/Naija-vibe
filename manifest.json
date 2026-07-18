@@ -1,1 +1,21 @@
-{"name":"Naija-vibe","short_name":"Naija-vibe","start_url":"/Naija-vibe/","display":"standalone","theme_color":"#0866ff","background_color":"#ffffff","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/5968/5968764.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "Naija-vibe - Connect Nigeria",
+  "short_name": "Naija-vibe",
+  "start_url": "/Naija-vibe/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0866ff",
+  "description": "Nigeria's own social network",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/124/124010.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/124/124010.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
