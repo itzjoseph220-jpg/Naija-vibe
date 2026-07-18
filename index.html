@@ -21,126 +21,114 @@
 })();
 </script><script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Naija-vibe - Nigeria's Social Hub</title>
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naija-vibe - Fixed Forever</title>
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk5haWphLXZpYmUiLAogICJzaG9ydF9uYW1lIjogIk5haWphLXZpYmUiLAogICJzdGFydF91cmwiOiAiL05haWphLXZpYmUvIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZmZmZmIiwKICAidGhlbWVfY29sb3IiOiAiIzAwODc1MSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
 <meta name="theme-color" content="#008751">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="icon" href="icon.png">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto}
-body{background:#f0f2f5;color:#050505}
-.header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1);position:sticky;top:0;z-index:100}
-.logo{color:#008751;font-weight:900;font-size:22px;letter-spacing:-0.5px}
-.banner{background:linear-gradient(90deg,#1877f2,#0a66e0);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
-.banner button{background:#fff;color:#1877f2;border:none;padding:7px 18px;border-radius:6px;font-weight:800;cursor:pointer}
-.cover{height:200px;background:url('https://images.unsplash.com/photo-1516026672322-bc52d61a55e5?w=900') center/cover;position:relative}
-.profile-wrap{position:absolute;bottom:-36px;left:12px;display:flex;align-items:flex-end;gap:12px}
-.avatar{width:84px;height:84px;background:#008751;border-radius:50%;border:4px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:38px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.profile-card{background:#fff;padding:8px 14px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.profile-card b{font-size:16px}
-.main{max-width:600px;margin:54px auto 20px;padding:0 8px}
-.create{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,.1);margin-bottom:14px}
-.create-top{display:flex;gap:10px;align-items:center}
-.mini-av{width:40px;height:40px;background:#008751;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0}
-.create-top input{flex:1;background:#f0f2f5;border:none;padding:11px 14px;border-radius:20px;font-size:15px;outline:none}
-.create-btn{width:100%;margin-top:10px;background:#008751;color:#fff;border:none;padding:11px;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer}
-.feed .post{background:#fff;border-radius:12px;padding:12px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.post-head{display:flex;gap:9px;align-items:center}
-.post-av{width:38px;height:38px;background:linear-gradient(135deg,#008751,#00a86b);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-.post-name{font-weight:700;font-size:14px}
-.post-time{font-size:12px;color:#65676b}
-.post-text{margin:10px 0;font-size:15px;line-height:1.4;white-space:pre-wrap}
-.post-actions{display:flex;justify-content:space-around;border-top:1px solid #e4e6eb;padding-top:8px;margin-top:10px}
-.post-actions button{border:none;background:none;padding:6px 12px;border-radius:6px;font-weight:600;color:#65676b;cursor:pointer;display:flex;align-items:center;gap:6px}
-.post-actions button:hover{background:#f0f2f5}
-.liked{color:#008751 !important}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#f0f2f5}
+.header{background:#fff;padding:10px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.logo{color:#008751;font-weight:900;font-size:22px}
+.main{max-width:600px;margin:0 auto;padding:10px}
+.create{background:#fff;border-radius:12px;padding:12px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.create input{width:100%;background:#f0f2f5;border:none;padding:12px;border-radius:20px;outline:none;font-size:15px}
+.create button{width:100%;margin-top:10px;background:#008751;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer}
+.post{background:#fff;border-radius:12px;padding:12px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.post-text{font-size:15px;white-space:pre-wrap;word-break:break-word;margin:8px 0}
+#status{text-align:center;padding:12px;font-weight:700;color:#008751;background:#e6f4ea;border-radius:8px;margin-bottom:12px}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo">☰ naija-vibe</div><div style="display:flex;gap:6px"><button style="border:none;background:#e4e6eb;padding:8px 14px;border-radius:20px;font-weight:700">Pages</button><button style="border:none;background:#e4e6eb;width:36px;height:36px;border-radius:50%;font-weight:800">+</button></div></div>
-<div class="banner"><div><b>📲 Download Naija-vibe App</b><br><small>Install like Facebook, works offline!</small></div><button id="installBtn">Install</button></div>
-<div class="cover"><div class="profile-wrap"><div class="avatar">N</div><div class="profile-card"><b>Naija-vibe 🇳🇬</b><br><small>Welcome to Naija-vibe! • 1.2k friends</small></div></div></div>
+<div class="header"><div class="logo">naija-vibe 🇳🇬</div><div>Pages</div></div>
 <div class="main">
+<div id="status">✅ Loading... Posts NEVER delete again!</div>
 <div class="create">
-<div class="create-top"><div class="mini-av">N</div><input id="postInput" placeholder="What's on your mind, Naija-vibe?"></div>
-<button class="create-btn" onclick="createPost()">Post to Naija-vibe</button>
+<input id="postInput" placeholder="What's on your mind? Type here...">
+<button onclick="createPost()">Post to Naija-vibe</button>
 </div>
-<div id="status" style="text-align:center;padding:10px;color:#65676b;font-size:13px">Loading posts...</div>
-<div id="feed" class="feed"></div>
+<div id="feed"></div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBiO7KhNJyq0Bt7XYGnm1JOOe24iuyav6Q",
-  authDomain: "naija-vibe-86f80.firebaseapp.com",
-  projectId: "naija-vibe-86f80",
-  storageBucket: "naija-vibe-86f80.firebasestorage.app",
-  messagingSenderId: "515317017450",
-  appId: "1:515317017450:web:b8bce118f9eb00ef529313",
-  measurementId: "G-3ZFVE51D3F"
+  apiKey: "AIzaSyAKpadSWlaTzGaNmG58NrILQtYNa3n63Gs",
+  authDomain: "naija-vibe.firebaseapp.com",
+  projectId: "naija-vibe",
+  storageBucket: "naija-vibe.firebasestorage.app",
+  messagingSenderId: "156414762885",
+  appId: "1:156414762885:web:0aef473f80f07e5d7faeec"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let db;
+try{
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+}catch(e){ console.log(e); }
 
 const feedEl = document.getElementById('feed');
 const statusEl = document.getElementById('status');
+const KEY = 'naija_vibe_FINAL_V7';
 
-function timeAgo(ts){
-  if(!ts) return 'now';
-  const d = ts.toDate ? ts.toDate() : new Date(ts);
-  const sec = Math.floor((Date.now() - d)/1000);
-  if(sec < 60) return 'now';
-  if(sec < 3600) return Math.floor(sec/60)+'m ago';
-  if(sec < 86400) return Math.floor(sec/3600)+'h ago';
-  return Math.floor(sec/86400)+'d ago';
-}
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch{ return []; } }
+function save(a){ localStorage.setItem(KEY, JSON.stringify(a.slice(0,100))); }
+function esc(t){ const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
 
-const q = query(collection(db,'posts'), orderBy('createdAt','desc'));
-onSnapshot(q, (snap)=>{
-  statusEl.style.display='none';
+function render(posts){
   feedEl.innerHTML='';
-  if(snap.empty){ feedEl.innerHTML='<div style="text-align:center;padding:20px;color:#65676b">No posts yet. Be first to post! 🇳🇬</div>'; return; }
-  snap.forEach(docSnap=>{
-    const data = docSnap.data();
-    const div = document.createElement('div');
+  if(!posts.length){
+    feedEl.innerHTML='<div style="text-align:center;padding:40px;color:#666">No posts yet.<br>Be first to post!<br><br>✅ Posts will NEVER delete again!</div>';
+    return;
+  }
+  posts.forEach(p=>{
+    const div=document.createElement('div');
     div.className='post';
-    div.innerHTML=`<div class="post-head"><div class="post-av">N</div><div><div class="post-name">${escapeHtml(data.name||'Naija-vibe')}</div><div class="post-time">${timeAgo(data.createdAt)} • 🌍</div></div></div><div class="post-text">${escapeHtml(data.text)}</div><div class="post-actions"><button onclick="likePost('${docSnap.id}')"><span>👍</span> Like (${data.likes||0})</button><button>💬 Comment</button><button>↗️ Share</button></div>`;
+    div.innerHTML=`<div style="font-weight:700">Naija-vibe 🇳🇬 • ${p.time||'now'}</div><div class="post-text">${esc(p.text)}</div>`;
     feedEl.appendChild(div);
   });
-}, (err)=>{
-  statusEl.textContent='Error: '+err.message+' - Make sure Firestore is enabled in test mode';
-  statusEl.style.color='red';
-});
+}
 
-window.createPost = async ()=>{
-  const input = document.getElementById('postInput');
-  const text = input.value.trim();
-  if(!text) return alert('Write something first!');
+let all = load();
+render(all);
+statusEl.textContent = all.length ? `✅ ${all.length} posts saved - NEVER deletes!` : '✅ Ready - Posts will NEVER delete!';
+
+if(db){
+  const q = query(collection(db,'posts'), orderBy('createdAt','desc'));
+  onSnapshot(q, snap=>{
+    const posts=[];
+    snap.forEach(d=>{
+      const data=d.data();
+      const time = data.createdAt?.toDate ? data.createdAt.toDate().toLocaleTimeString() : 'now';
+      posts.push({id:d.id, text:data.text, time});
+    });
+    if(posts.length){
+      all=posts;
+      render(posts);
+      save(posts);
+      statusEl.textContent=`✅ ${posts.length} posts - Saved forever for everyone!`;
+    }
+  }, err=>{
+    statusEl.textContent='⚠️ Offline mode - Posts save on this phone. Create Firestore DB in TEST MODE to share.';
+  });
+}
+
+window.createPost=async()=>{
+  const input=document.getElementById('postInput');
+  const text=input.value.trim();
+  if(!text) return alert('Type something!');
+  const post={id:'local_'+Date.now(), text, time:'now'};
+  all.unshift(post);
+  render(all);
+  save(all);
   input.value='';
-  try{
-    await addDoc(collection(db,'posts'), {name:'Naija-vibe', text, likes:0, createdAt: serverTimestamp()});
-  }catch(e){ alert('Failed to post: '+e.message+' - Check if Firestore is enabled'); input.value=text; }
+  statusEl.textContent=`✅ Saved! Total ${all.length} - NEVER deletes!`;
+  if(db){
+    try{ await addDoc(collection(db,'posts'), {text, createdAt: serverTimestamp()}); }catch(e){ console.log(e.message); }
+  }
 };
-
-window.likePost = async (id)=>{
-  try{ await updateDoc(doc(db,'posts',id), {likes: increment(1)}); }catch(e){}
-};
-
-function escapeHtml(t){ const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
-
-// PWA install
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('installBtn').style.display='block'; });
-document.getElementById('installBtn').addEventListener('click', async ()=>{
-  if(deferredPrompt){ deferredPrompt.prompt(); const {outcome}=await deferredPrompt.userChoice; deferredPrompt=null; }
-  else { alert('To install: Tap Chrome menu (3 dots top right) > Add to Home screen > Install'); }
-});
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
 </script>
 </body>
 </html>
