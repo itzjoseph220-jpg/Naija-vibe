@@ -1,13 +1,19 @@
 {
   "name": "Naija-vibe",
   "short_name": "Naija-vibe",
+  "description": "A social media platform for sharing posts, videos, and connecting with friends.",
   "start_url": "/Naija-vibe/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#008751",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/733/733585.png",
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
